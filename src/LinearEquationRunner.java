@@ -16,15 +16,23 @@ public class LinearEquationRunner {
             coord1 = coord1.replace(",","");
         }
         if (coord2.contains("(")) {
-            coord1 = coord1.replace("(","").replace(")","");
+            coord2 = coord2.replace("(","").replace(")","");
         }
         if (coord2.contains(",")) {
-            coord1 = coord1.replace(",","");
+            coord2 = coord2.replace(",","");
         }
 
         int x1 = Integer.parseInt(coord1.substring(0,coord1.indexOf(" ")));
         int y1 = Integer.parseInt(coord1.substring(coord1.indexOf(" ")+1));
         int x2 = Integer.parseInt(coord2.substring(0,coord2.indexOf(" ")));
         int y2 = Integer.parseInt(coord2.substring(coord2.indexOf(" ")+1));
+
+        LinearEquation eq = new LinearEquation(x1, y1, x2, y2);
+        eq.lineinfo();
+
+        System.out.println("\nEnter a value for x: ");
+        int x = scan.nextInt();
+
+        System.out.println("The point on the line is "+ eq.coordinateForX(x));
     }
 }
