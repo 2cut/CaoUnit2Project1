@@ -14,19 +14,34 @@ public class LinearEquation {
       }
     }
 
+    public double roundedToHundredth(double toRound) {
+        double roundMore = toRound*100.0;
+        return Math.round(roundMore)/100.0;
+    }
+
     public double distance() {
-        return Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+        return roundedToHundredth(Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1)));
     }
 
     public double slope() {
-        return ((double)y2-y1)/((double)x2-x1);
+        if (x2-x1>0) {
+            return roundedToHundredth(((double) y2 - y1) / ((double) x2 - x1));
+        } else {
+            return roundedToHundredth(((double) y2-y1)*-1) / Math.abs(((double) x2-x1));
+        }
     }
     public double yIntercept() {
-        return (double) y1-slope()*x1;
+        return roundedToHundredth((double) y1-slope()*x1);
     }
 
     public String equation() {
-        return "y = "+slope()+"x + "+yIntercept();
+        if (yIntercept()>0) {
+            return "y = " + ( y2 - y1) + "/" + ( x2 - x1) + "x + " + yIntercept();
+        } else if (yIntercept()==0) {
+            return "y = " + (y2 - y1) + "/" + (x2 - x1);
+        } else {
+            return "y = " + ( y2 - y1) + "/" + ( x2 - x1) + "x - " + Math.abs(yIntercept());
+        }
     }
     public void lineinfo() {
         System.out.println("The two points are: ("+x1+", "+y1+") and ("+x2+", "+y2+")");
@@ -37,7 +52,7 @@ public class LinearEquation {
     }
 
     public String coordinateForX(double xValue) {
-        return "The point on the line is ("+xValue+", "+(xValue*slope()+yIntercept())+")";
+        return "The point on the line is ("+xValue+", "+(roundedToHundredth(xValue*slope()+yIntercept()))+")";
     }
 
 }
