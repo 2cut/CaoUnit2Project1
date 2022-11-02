@@ -1,14 +1,20 @@
 import java.util.Scanner;
 
+
 public class LinearEquationRunner {
+    public static void start() {
+        System.out.println("Welcome!");
+    }
     public static void main(String[] args) {
+
         // Using Scanner method to register user input for the two coordinate points
         Scanner scan = new Scanner(System.in);
-        System.out.println("Welcome!");
+        start();
         System.out.println("Enter coordinate 1:");
         String coord1 = scan.nextLine();
         System.out.println("Enter coordinate 2:");
         String coord2 = scan.nextLine();
+
 
         // removing symbols from the coordinate Strings, so it can be parsed
         if (coord1.contains("(")) {
