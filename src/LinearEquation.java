@@ -45,37 +45,46 @@ public class LinearEquation {
 
     // Returns a String that prints out the equation of the line where the slope is in fractional form
     public String equation() {
+        // Checks if line passes through origin
         if (slope()==1 & yIntercept()==0.0) {
             return "y = x";
         }
+
+        // Checks if slope is 1 or -1 and only prints x or -x
         if (slope()==1) {
             return "y = x + "+yIntercept();
         } else if (slope()==-1) {
             return "y = -x + "+yIntercept();
         }
 
+        // Checks if the line is horizontal
         if (y2==y1) {
             return "y = "+y1;
         }
 
+        // Checks if slope is negative and moves the sign to the front of the expression instead of ex: 5/-4
         if (x2 - x1 < 0) {
+                // Properly prints out whole numbers without the fraction
                 if (slope() % 1 == 0) {
                     return "y = " + (int)(slope()) + "x + " + yIntercept();
                 } else {
                     return "y = " + (y2 - y1) * -1 + "/" + Math.abs(x2 - x1) + "x + " + yIntercept();
                 }
             }
+        // Checks if yIntercept is greater than 0
         if (yIntercept() > 0) {
                 if (slope() % 1 == 0) {
                     return "y = " + (int)(slope()) + "x + " + yIntercept();
                 }
                 return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x + " + yIntercept();
             }
+        // If Y intercept is zero it does not include the Y intercept
         if (yIntercept() == 0) {
                 if (slope() % 1 == 0) {
                     return "y = " + (int)(slope()) + "x";
                 }
                 return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x";
+                // When the Y intercept is negative it exchanges the plus sign for a negative sign
             } else {
                 if (slope() % 1 == 0) {
                     return "y = " + (int)(slope()) + "x - " + Math.abs(yIntercept());
