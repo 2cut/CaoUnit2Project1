@@ -7,7 +7,7 @@ public class LinearEquation {
     // 4 parameter constructor method to set both points' X and Y coordinates
     public LinearEquation(int x1, int y1, int x2, int y2) {
       if (x1==x2) {
-        System.out.println("The two points you have entered are a vertical line, x = "+x1);
+        System.out.println("The two points you have entered are on a vertical line, x = "+x1);
         System.exit(0);
       } else {
           this.x1 = x1;
@@ -45,37 +45,45 @@ public class LinearEquation {
 
     // Returns a String that prints out the equation of the line where the slope is in fractional form
     public String equation() {
+        if (slope()==1 & yIntercept()==0.0) {
+            return "y = x";
+        }
         if (slope()==1) {
-            return "y= x + "+yIntercept();
+            return "y = x + "+yIntercept();
         } else if (slope()==-1) {
-            return "y= -x + "+yIntercept();
-        } else if (y2==y1) {
-            return "This line is horizontal";
-        } else {
-            if (x2 - x1 < 0) {
+            return "y = -x + "+yIntercept();
+        }
+
+        if (y2==y1) {
+            return "y = "+y1;
+        }
+
+        if (x2 - x1 < 0) {
                 if (slope() % 1 == 0) {
-                    return "y= " + roundedToHundredth(slope()) + "x + " + yIntercept();
+                    return "y = " + (int)(slope()) + "x + " + yIntercept();
                 } else {
-                    return "y= " + (y2 - y1) * -1 + "/" + Math.abs(x2 - x1) + "x + " + yIntercept();
+                    return "y = " + (y2 - y1) * -1 + "/" + Math.abs(x2 - x1) + "x + " + yIntercept();
                 }
-            } else if (yIntercept() > 0) {
+            }
+        if (yIntercept() > 0) {
                 if (slope() % 1 == 0) {
-                    return "y= " + roundedToHundredth(slope()) + "x + " + yIntercept();
+                    return "y = " + (int)(slope()) + "x + " + yIntercept();
                 }
                 return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x + " + yIntercept();
-            } else if (yIntercept() == 0) {
+            }
+        if (yIntercept() == 0) {
                 if (slope() % 1 == 0) {
-                    return "y= " + roundedToHundredth(slope()) + "x";
+                    return "y = " + (int)(slope()) + "x";
                 }
                 return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x";
             } else {
                 if (slope() % 1 == 0) {
-                    return "y= " + roundedToHundredth(slope()) + "x -" + Math.abs(yIntercept());
+                    return "y = " + (int)(slope()) + "x - " + Math.abs(yIntercept());
                 }
                 return "y = " + (y2 - y1) + "/" + (x2 - x1) + "x - " + Math.abs(yIntercept());
             }
         }
-    }
+
 
     // Prints all information of the line using previous methods
     public String lineinfo() {
